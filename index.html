@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffd6e8, #ffeef6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 20px;
+        text-align: center;
+        width: 90%;
+        max-width: 420px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 40px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 120px;
+    }
+
+    button {
+        border: none;
+        border-radius: 999px;
+        padding: 14px 30px;
+        font-size: 1rem;
+        cursor: pointer;
+        position: absolute;
+        transition: transform 0.2s ease;
+    }
+
+    #yes {
+        background: #ff4d88;
+        color: white;
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+        z-index: 2;
+    }
+
+    #no {
+        background: #eee;
+        color: #333;
+        left: 50%;
+        top: 60px;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+
+    .hint {
+        font-size: 0.8rem;
+        color: #888;
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>nirali will you be my valentine? 💖</h1>
+
+    <div class="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <div class="hint">“No” seems a bit shy 😈</div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    let escapeCount = 0;
+
+    function moveNoButton() {
+        const card = document.querySelector(".card");
+        const rect = card.getBoundingClientRect();
+
+        const maxX = rect.width - noBtn.offsetWidth;
+        const maxY = rect.height - noBtn.offsetHeight - 40;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+
+        escapeCount++;
+
+        const scale = 1 + escapeCount * 0.15;
+        yesBtn.style.transform = translateX(-50%) scale(${scale});
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <div style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                height:100vh;
+                font-size:2rem;
+                background:#ffeff6;
+            ">
+                💘 YAYYYYY 💘
+            </div>
+        `;
+    });
+</script>
+
+</body>
+</html>
